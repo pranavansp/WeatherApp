@@ -94,9 +94,9 @@
 		E928B4992C11D039001EC804 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				E928B49A2C11D039001EC804 /* WeatherAppApp.swift */,
+				E928B4C92C11D0DA001EC804 /* Core */,
+				E928B4C62C11D074001EC804 /* Scene */,
 				E928B49C2C11D039001EC804 /* ContentView.swift */,
-				E928B49E2C11D03B001EC804 /* Assets.xcassets */,
 				E928B4A02C11D03B001EC804 /* Preview Content */,
 			);
 			path = WeatherApp;
@@ -125,6 +125,62 @@
 				E928B4B72C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		E928B4C42C11D051001EC804 /* Landing Page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Landing Page";
+			sourceTree = "<group>";
+		};
+		E928B4C52C11D06D001EC804 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E928B4C62C11D074001EC804 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4C42C11D051001EC804 /* Landing Page */,
+				E928B4C52C11D06D001EC804 /* Search */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		E928B4C72C11D088001EC804 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E928B49A2C11D039001EC804 /* WeatherAppApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E928B4C82C11D090001EC804 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E928B49E2C11D03B001EC804 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E928B4C92C11D0DA001EC804 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4CA2C11D0F3001EC804 /* Preview Provider */,
+				E928B4C82C11D090001EC804 /* Resource */,
+				E928B4C72C11D088001EC804 /* App */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E928B4CA2C11D0F3001EC804 /* Preview Provider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Provider";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
