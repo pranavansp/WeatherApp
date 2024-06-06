@@ -14,6 +14,10 @@
 		E928B4AC2C11D03B001EC804 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */; };
 		E928B4B62C11D03B001EC804 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4B52C11D03B001EC804 /* WeatherAppUITests.swift */; };
 		E928B4B82C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4B72C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift */; };
+		E928B4CD2C11D19B001EC804 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4CC2C11D19B001EC804 /* NetworkUtils.swift */; };
+		E928B4CF2C11D1B1001EC804 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4CE2C11D1B1001EC804 /* NetworkError.swift */; };
+		E928B4D12C11D1CE001EC804 /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4D02C11D1CE001EC804 /* URLRouter.swift */; };
+		E928B4D62C11D31D001EC804 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4D52C11D31D001EC804 /* Environment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,12 @@
 		E928B4B12C11D03B001EC804 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E928B4B52C11D03B001EC804 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		E928B4B72C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E928B4CC2C11D19B001EC804 /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		E928B4CE2C11D1B1001EC804 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E928B4D02C11D1CE001EC804 /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
+		E928B4D22C11D23F001EC804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E928B4D32C11D2A1001EC804 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		E928B4D52C11D31D001EC804 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 		E928B4992C11D039001EC804 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				E928B4D22C11D23F001EC804 /* Info.plist */,
 				E928B4C92C11D0DA001EC804 /* Core */,
 				E928B4C62C11D074001EC804 /* Scene */,
 				E928B49C2C11D039001EC804 /* ContentView.swift */,
@@ -154,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				E928B49A2C11D039001EC804 /* WeatherAppApp.swift */,
+				E928B4D52C11D31D001EC804 /* Environment.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -169,9 +181,11 @@
 		E928B4C92C11D0DA001EC804 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E928B4C72C11D088001EC804 /* App */,
+				E928B4D42C11D2A7001EC804 /* Config */,
+				E928B4CB2C11D18E001EC804 /* Utility */,
 				E928B4CA2C11D0F3001EC804 /* Preview Provider */,
 				E928B4C82C11D090001EC804 /* Resource */,
-				E928B4C72C11D088001EC804 /* App */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -181,6 +195,24 @@
 			children = (
 			);
 			path = "Preview Provider";
+			sourceTree = "<group>";
+		};
+		E928B4CB2C11D18E001EC804 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4CC2C11D19B001EC804 /* NetworkUtils.swift */,
+				E928B4CE2C11D1B1001EC804 /* NetworkError.swift */,
+				E928B4D02C11D1CE001EC804 /* URLRouter.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E928B4D42C11D2A7001EC804 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4D32C11D2A1001EC804 /* Development.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E928B49D2C11D039001EC804 /* ContentView.swift in Sources */,
+				E928B4D62C11D31D001EC804 /* Environment.swift in Sources */,
+				E928B4CF2C11D1B1001EC804 /* NetworkError.swift in Sources */,
+				E928B4D12C11D1CE001EC804 /* URLRouter.swift in Sources */,
+				E928B4CD2C11D19B001EC804 /* NetworkUtils.swift in Sources */,
 				E928B49B2C11D039001EC804 /* WeatherAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +389,7 @@
 /* Begin XCBuildConfiguration section */
 		E928B4B92C11D03B001EC804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -403,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -416,6 +453,7 @@
 		};
 		E928B4BA2C11D03B001EC804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -460,7 +498,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -472,6 +510,7 @@
 		};
 		E928B4BC2C11D03B001EC804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -481,6 +520,7 @@
 				DEVELOPMENT_TEAM = CC382TMQWF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -501,6 +541,7 @@
 		};
 		E928B4BD2C11D03B001EC804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -510,6 +551,7 @@
 				DEVELOPMENT_TEAM = CC382TMQWF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -530,6 +572,7 @@
 		};
 		E928B4BF2C11D03B001EC804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -550,6 +593,7 @@
 		};
 		E928B4C02C11D03B001EC804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -570,6 +614,7 @@
 		};
 		E928B4C22C11D03B001EC804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -588,6 +633,7 @@
 		};
 		E928B4C32C11D03B001EC804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E928B4D32C11D2A1001EC804 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
