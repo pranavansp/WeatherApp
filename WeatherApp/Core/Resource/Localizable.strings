@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  WeatherApp
+
+  Created by Pranavan Sivarajah on 2024-06-06.
+  
+*/
+
+// MARK: - APP
+"WeatherApp.loading.title" = "Please wait...";
+
+//MARK: - Landing
+"landing.title" = "My Location";
+"landing.search.title" = "Search for a city or airport";
+"landing.temp.high.%@.low.%@" = "H:%@ L:%@";

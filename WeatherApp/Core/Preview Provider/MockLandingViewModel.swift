@@ -8,12 +8,15 @@
 import Foundation
 
 class MockLandingViewModel: LandingViewModel {
-    
     var temperature: String = "19.0"
     var location: String = "Stockholm"
     var weatherType: String = "Party Cloud"
-    var higherLowerTemperature: String = "L: 18, H: 19"
     var isLoading: Bool = false
+    var error: NetworkError? = nil
+    var higherTemperature: String = "19"
+    var lowTemperature: String = "10"
+    
+    
     
     func onTapSearchButton() {
         NSLog("mock onTapSearchButton")
