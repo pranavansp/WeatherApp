@@ -16,8 +16,6 @@ class MockLandingViewModel: LandingViewModel {
     var higherTemperature: String = "19"
     var lowTemperature: String = "10"
     
-    
-    
     func onTapSearchButton() {
         NSLog("mock onTapSearchButton")
     }

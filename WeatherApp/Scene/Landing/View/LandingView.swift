@@ -13,19 +13,15 @@ struct LandingView<ViewModel:LandingViewModel>: View {
     
     var body: some View {
         ZStack {
-            if viewModel.isLoading {
-                ProgressView(Localization.App.loadingTitle)
-                    .controlSize(.large)
-                    .font(.headline)
-            } else {
-                VStack {
-                    // Details View
-                    detailView
-                    // Search location button
-                    searchLocationButton
-                }
+            VStack {
+                // Details View
+                detailView
+                // Search location button
+                searchLocationButton
             }
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .onAppear {
             Task {
                 await viewModel.onLoad()
@@ -45,7 +41,7 @@ struct LandingView<ViewModel:LandingViewModel>: View {
                 .font(.system(size: 80.0))
             Text(viewModel.weatherType)
                 .fontWeight(.bold)
-            Text(Localization.Landing.temperature(viewModel.higherTemperature,viewModel.lowTemperature))
+            Text(Localization.Landing.temperature(viewModel.higherTemperature, viewModel.lowTemperature))
                 .fontWeight(.bold)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

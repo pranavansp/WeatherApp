@@ -14,7 +14,8 @@ extension URLRouter {
             queryItems: [
                 .init(name: "q", value: "\(location)"),
                 .init(name: "units", value: "metric")
-            ]
+            ],
+            type: .data
         )
     }
 }

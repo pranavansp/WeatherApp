@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class NetworkUtils {
-    /// Fetch Content for given url
+    /// Fetch Content for given url request
     /// - Parameter request: URLRequest
     /// - Returns: T: Object
     func fetch<T: Codable>(_ request: URLRequest) async throws -> T {

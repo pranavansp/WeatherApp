@@ -22,12 +22,12 @@ class DefaultLandingViewModel: LandingViewModel {
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
     
-    //MARK: Private
+    // MARK: Private
     private var cancellable: Set<AnyCancellable> = []
-    private var dataSource: LandingDataSourceProtocol
+    private let dataSource: LandingDataSourceProtocol
     
-    /// Create a lazily initialized property for MeasurementFormatter
-    private lazy var measurementFormatter: MeasurementFormatter = {
+    /// Create a computed property for MeasurementFormatter
+    private var measurementFormatter: MeasurementFormatter {
         let numFormatter = NumberFormatter()
         numFormatter.maximumFractionDigits = 0
         let measurementFormatter = MeasurementFormatter()
@@ -35,11 +35,11 @@ class DefaultLandingViewModel: LandingViewModel {
         measurementFormatter.unitOptions = .temperatureWithoutUnit
         measurementFormatter.numberFormatter = numFormatter
         return measurementFormatter
-    }()
+    }
     
-    //MARK: Private (set)
+    // MARK: Private subject
     private var temperatureMeasurement: PassthroughSubject<WeatherTemperature, Never> = PassthroughSubject()
-    private var higherLowTemperatureMeasurement: PassthroughSubject<(WeatherTemperature,WeatherTemperature), Never> = PassthroughSubject()
+    private var highLowTemperatureMeasurement: PassthroughSubject<(WeatherTemperature,WeatherTemperature), Never> = PassthroughSubject()
     
     // MARK: - Init
     init(dataSource: LandingDataSourceProtocol = LandingDataSource()) {
@@ -53,16 +53,16 @@ class DefaultLandingViewModel: LandingViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.temperature = measurementFormatter.string(from: value)
+                self.temperature = self.measurementFormatter.string(from: value)
             }
             .store(in: &cancellable)
         
-        higherLowTemperatureMeasurement
+        highLowTemperatureMeasurement
             .receive(on: DispatchQueue.main)
             .sink { [weak self] high, low in
                 guard let self = self else { return }
-                self.higherTemperature = measurementFormatter.string(from: high)
-                self.lowTemperature = measurementFormatter.string(from: low)
+                self.higherTemperature = self.measurementFormatter.string(from: high)
+                self.lowTemperature = self.measurementFormatter.string(from: low)
             }
             .store(in: &cancellable)
     }
@@ -85,7 +85,7 @@ class DefaultLandingViewModel: LandingViewModel {
                 self.temperatureMeasurement.send(Measurement(value: dataSourceFetch.main.temp, unit: UnitTemperature.celsius))
                 let highTemp = Measurement(value: dataSourceFetch.main.tempMax, unit: UnitTemperature.celsius)
                 let lowTemp = Measurement(value: dataSourceFetch.main.tempMin, unit: UnitTemperature.celsius)
-                self.higherLowTemperatureMeasurement.send((highTemp,lowTemp))
+                self.highLowTemperatureMeasurement.send((highTemp,lowTemp))
                 await MainActor.run {
                     self.location = dataSourceFetch.name
                     self.weatherType = dataSourceFetch.getWeatherType()

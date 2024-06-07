@@ -28,6 +28,14 @@
 		E928B4ED2C11F071001EC804 /* LandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4EC2C11F071001EC804 /* LandingDataSource.swift */; };
 		E928B4F02C11F0BD001EC804 /* CurrentWeatherDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4EF2C11F0BD001EC804 /* CurrentWeatherDataResponse.swift */; };
 		E928B4F32C11F1AA001EC804 /* URLRouter+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4F22C11F1AA001EC804 /* URLRouter+Weather.swift */; };
+		E928B4F92C1360F2001EC804 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4F82C1360F2001EC804 /* SearchView.swift */; };
+		E928B4FB2C1361A1001EC804 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4FA2C1361A1001EC804 /* SearchViewModel.swift */; };
+		E928B4FD2C1361AD001EC804 /* DefaultSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4FC2C1361AD001EC804 /* DefaultSearchViewModel.swift */; };
+		E928B4FF2C13621D001EC804 /* MockSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4FE2C13621D001EC804 /* MockSearchViewModel.swift */; };
+		E928B5012C136385001EC804 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5002C136385001EC804 /* SearchDataSource.swift */; };
+		E928B5032C136394001EC804 /* URLRouter+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5022C136394001EC804 /* URLRouter+Search.swift */; };
+		E928B5052C13661E001EC804 /* GeocodingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5042C13661E001EC804 /* GeocodingResponse.swift */; };
+		E928B5072C1366CC001EC804 /* APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5062C1366CC001EC804 /* APIType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +82,14 @@
 		E928B4EC2C11F071001EC804 /* LandingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingDataSource.swift; sourceTree = "<group>"; };
 		E928B4EF2C11F0BD001EC804 /* CurrentWeatherDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDataResponse.swift; sourceTree = "<group>"; };
 		E928B4F22C11F1AA001EC804 /* URLRouter+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRouter+Weather.swift"; sourceTree = "<group>"; };
+		E928B4F82C1360F2001EC804 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E928B4FA2C1361A1001EC804 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		E928B4FC2C1361AD001EC804 /* DefaultSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchViewModel.swift; sourceTree = "<group>"; };
+		E928B4FE2C13621D001EC804 /* MockSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchViewModel.swift; sourceTree = "<group>"; };
+		E928B5002C136385001EC804 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		E928B5022C136394001EC804 /* URLRouter+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRouter+Search.swift"; sourceTree = "<group>"; };
+		E928B5042C13661E001EC804 /* GeocodingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingResponse.swift; sourceTree = "<group>"; };
+		E928B5062C1366CC001EC804 /* APIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +187,9 @@
 		E928B4C52C11D06D001EC804 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				E928B4F62C1360CC001EC804 /* DataSource */,
+				E928B4F52C1360C6001EC804 /* ViewModel */,
+				E928B4F42C1360C0001EC804 /* View */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -221,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				E928B4DD2C11E1F2001EC804 /* MockLandingViewModel.swift */,
+				E928B4FE2C13621D001EC804 /* MockSearchViewModel.swift */,
 			);
 			path = "Preview Provider";
 			sourceTree = "<group>";
@@ -231,6 +251,7 @@
 				E928B4CC2C11D19B001EC804 /* NetworkUtils.swift */,
 				E928B4CE2C11D1B1001EC804 /* NetworkError.swift */,
 				E928B4D02C11D1CE001EC804 /* URLRouter.swift */,
+				E928B5062C1366CC001EC804 /* APIType.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -281,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				E928B4EF2C11F0BD001EC804 /* CurrentWeatherDataResponse.swift */,
+				E928B5042C13661E001EC804 /* GeocodingResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +313,32 @@
 				E928B4D72C11DC94001EC804 /* LandingView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E928B4F42C1360C0001EC804 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4F82C1360F2001EC804 /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E928B4F52C1360C6001EC804 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E928B4FA2C1361A1001EC804 /* SearchViewModel.swift */,
+				E928B4FC2C1361AD001EC804 /* DefaultSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E928B4F62C1360CC001EC804 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				E928B5002C136385001EC804 /* SearchDataSource.swift */,
+				E928B5022C136394001EC804 /* URLRouter+Search.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,17 +474,25 @@
 			files = (
 				E928B4DE2C11E1F2001EC804 /* MockLandingViewModel.swift in Sources */,
 				E928B4EA2C11EEDA001EC804 /* SystemImageResource.swift in Sources */,
+				E928B4FD2C1361AD001EC804 /* DefaultSearchViewModel.swift in Sources */,
 				E928B4D62C11D31D001EC804 /* Environment.swift in Sources */,
 				E928B4D82C11DC94001EC804 /* LandingView.swift in Sources */,
 				E928B4CF2C11D1B1001EC804 /* NetworkError.swift in Sources */,
+				E928B5012C136385001EC804 /* SearchDataSource.swift in Sources */,
 				E928B4D12C11D1CE001EC804 /* URLRouter.swift in Sources */,
+				E928B5052C13661E001EC804 /* GeocodingResponse.swift in Sources */,
 				E928B4F32C11F1AA001EC804 /* URLRouter+Weather.swift in Sources */,
 				E928B4E02C11E3BA001EC804 /* DefaultLandingViewModel.swift in Sources */,
 				E928B4E52C11E8FA001EC804 /* Localization.swift in Sources */,
 				E928B4CD2C11D19B001EC804 /* NetworkUtils.swift in Sources */,
 				E928B4E82C11E91F001EC804 /* Localization+Landing.swift in Sources */,
+				E928B5032C136394001EC804 /* URLRouter+Search.swift in Sources */,
 				E928B4DA2C11E0CE001EC804 /* LandingViewModel.swift in Sources */,
+				E928B5072C1366CC001EC804 /* APIType.swift in Sources */,
+				E928B4F92C1360F2001EC804 /* SearchView.swift in Sources */,
 				E928B49B2C11D039001EC804 /* WeatherAppApp.swift in Sources */,
+				E928B4FF2C13621D001EC804 /* MockSearchViewModel.swift in Sources */,
+				E928B4FB2C1361A1001EC804 /* SearchViewModel.swift in Sources */,
 				E928B4F02C11F0BD001EC804 /* CurrentWeatherDataResponse.swift in Sources */,
 				E928B4ED2C11F071001EC804 /* LandingDataSource.swift in Sources */,
 			);
