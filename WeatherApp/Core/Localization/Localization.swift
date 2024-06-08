@@ -9,8 +9,11 @@ import SwiftUI
 
 public enum Localization {
     enum App {
+        public static var title: LocalizedStringKey {
+            return "weatherApp.title"
+        }
         public static var loadingTitle: LocalizedStringKey {
-            return "WeatherApp.loading.title"
+            return "weatherApp.loading.title"
         }
     }
 }

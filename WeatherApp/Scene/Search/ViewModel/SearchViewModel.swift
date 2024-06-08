@@ -12,4 +12,6 @@ protocol SearchViewModel: ObservableObject {
     var resultArray: [Geocoding] { get }
     var isLoading: Bool { get }
     var error: NetworkError? { get }
+    
+    func selectLocation(location: Geocoding)
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E928B49B2C11D039001EC804 /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B49A2C11D039001EC804 /* WeatherAppApp.swift */; };
 		E928B49F2C11D03B001EC804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E928B49E2C11D03B001EC804 /* Assets.xcassets */; };
 		E928B4A22C11D03B001EC804 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E928B4A12C11D03B001EC804 /* Preview Assets.xcassets */; };
 		E928B4AC2C11D03B001EC804 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */; };
@@ -36,6 +35,13 @@
 		E928B5032C136394001EC804 /* URLRouter+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5022C136394001EC804 /* URLRouter+Search.swift */; };
 		E928B5052C13661E001EC804 /* GeocodingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5042C13661E001EC804 /* GeocodingResponse.swift */; };
 		E928B5072C1366CC001EC804 /* APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5062C1366CC001EC804 /* APIType.swift */; };
+		E928B50A2C1454F2001EC804 /* AppLifecycleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5092C1454F2001EC804 /* AppLifecycleCoordinator.swift */; };
+		E928B50C2C145519001EC804 /* WeatherAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B50B2C145519001EC804 /* WeatherAppRouter.swift */; };
+		E928B50E2C145AF4001EC804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B50D2C145AF4001EC804 /* AppDelegate.swift */; };
+		E928B5102C145B20001EC804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B50F2C145B20001EC804 /* SceneDelegate.swift */; };
+		E928B5122C145EBE001EC804 /* WeatherAppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */; };
+		E928B5152C14AB69001EC804 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5142C14AB69001EC804 /* LocationManager.swift */; };
+		E928B5172C14B0CE001EC804 /* FirstAppearMofier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5162C14B0CE001EC804 /* FirstAppearMofier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +63,6 @@
 
 /* Begin PBXFileReference section */
 		E928B4972C11D039001EC804 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E928B49A2C11D039001EC804 /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		E928B49E2C11D03B001EC804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E928B4A12C11D03B001EC804 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E928B4A72C11D03B001EC804 /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +95,13 @@
 		E928B5022C136394001EC804 /* URLRouter+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRouter+Search.swift"; sourceTree = "<group>"; };
 		E928B5042C13661E001EC804 /* GeocodingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingResponse.swift; sourceTree = "<group>"; };
 		E928B5062C1366CC001EC804 /* APIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIType.swift; sourceTree = "<group>"; };
+		E928B5092C1454F2001EC804 /* AppLifecycleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleCoordinator.swift; sourceTree = "<group>"; };
+		E928B50B2C145519001EC804 /* WeatherAppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppRouter.swift; sourceTree = "<group>"; };
+		E928B50D2C145AF4001EC804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E928B50F2C145B20001EC804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppRouterTests.swift; sourceTree = "<group>"; };
+		E928B5142C14AB69001EC804 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E928B5162C14B0CE001EC804 /* FirstAppearMofier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppearMofier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */,
+				E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -206,8 +219,9 @@
 		E928B4C72C11D088001EC804 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E928B49A2C11D039001EC804 /* WeatherAppApp.swift */,
 				E928B4D52C11D31D001EC804 /* Environment.swift */,
+				E928B50D2C145AF4001EC804 /* AppDelegate.swift */,
+				E928B50F2C145B20001EC804 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -225,10 +239,12 @@
 		E928B4C92C11D0DA001EC804 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E928B4E32C11E8EB001EC804 /* Localization */,
 				E928B4C72C11D088001EC804 /* App */,
+				E928B5082C1454D3001EC804 /* Flow Coordinators */,
+				E928B4E32C11E8EB001EC804 /* Localization */,
 				E928B4D42C11D2A7001EC804 /* Config */,
 				E928B4CB2C11D18E001EC804 /* Utility */,
+				E928B5132C14AB5D001EC804 /* Helper */,
 				E928B4CA2C11D0F3001EC804 /* Preview Provider */,
 				E928B4EE2C11F08C001EC804 /* Model */,
 				E928B4C82C11D090001EC804 /* Resource */,
@@ -339,6 +355,24 @@
 				E928B5022C136394001EC804 /* URLRouter+Search.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		E928B5082C1454D3001EC804 /* Flow Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E928B5092C1454F2001EC804 /* AppLifecycleCoordinator.swift */,
+				E928B50B2C145519001EC804 /* WeatherAppRouter.swift */,
+			);
+			path = "Flow Coordinators";
+			sourceTree = "<group>";
+		};
+		E928B5132C14AB5D001EC804 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E928B5142C14AB69001EC804 /* LocationManager.swift */,
+				E928B5162C14B0CE001EC804 /* FirstAppearMofier.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E928B4DE2C11E1F2001EC804 /* MockLandingViewModel.swift in Sources */,
+				E928B5172C14B0CE001EC804 /* FirstAppearMofier.swift in Sources */,
 				E928B4EA2C11EEDA001EC804 /* SystemImageResource.swift in Sources */,
 				E928B4FD2C1361AD001EC804 /* DefaultSearchViewModel.swift in Sources */,
 				E928B4D62C11D31D001EC804 /* Environment.swift in Sources */,
@@ -480,8 +515,10 @@
 				E928B4CF2C11D1B1001EC804 /* NetworkError.swift in Sources */,
 				E928B5012C136385001EC804 /* SearchDataSource.swift in Sources */,
 				E928B4D12C11D1CE001EC804 /* URLRouter.swift in Sources */,
+				E928B50E2C145AF4001EC804 /* AppDelegate.swift in Sources */,
 				E928B5052C13661E001EC804 /* GeocodingResponse.swift in Sources */,
 				E928B4F32C11F1AA001EC804 /* URLRouter+Weather.swift in Sources */,
+				E928B5102C145B20001EC804 /* SceneDelegate.swift in Sources */,
 				E928B4E02C11E3BA001EC804 /* DefaultLandingViewModel.swift in Sources */,
 				E928B4E52C11E8FA001EC804 /* Localization.swift in Sources */,
 				E928B4CD2C11D19B001EC804 /* NetworkUtils.swift in Sources */,
@@ -490,11 +527,13 @@
 				E928B4DA2C11E0CE001EC804 /* LandingViewModel.swift in Sources */,
 				E928B5072C1366CC001EC804 /* APIType.swift in Sources */,
 				E928B4F92C1360F2001EC804 /* SearchView.swift in Sources */,
-				E928B49B2C11D039001EC804 /* WeatherAppApp.swift in Sources */,
 				E928B4FF2C13621D001EC804 /* MockSearchViewModel.swift in Sources */,
 				E928B4FB2C1361A1001EC804 /* SearchViewModel.swift in Sources */,
+				E928B50C2C145519001EC804 /* WeatherAppRouter.swift in Sources */,
+				E928B50A2C1454F2001EC804 /* AppLifecycleCoordinator.swift in Sources */,
 				E928B4F02C11F0BD001EC804 /* CurrentWeatherDataResponse.swift in Sources */,
 				E928B4ED2C11F071001EC804 /* LandingDataSource.swift in Sources */,
+				E928B5152C14AB69001EC804 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E928B4AC2C11D03B001EC804 /* WeatherAppTests.swift in Sources */,
+				E928B5122C145EBE001EC804 /* WeatherAppRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +705,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show weather near you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -696,6 +737,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show weather near you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

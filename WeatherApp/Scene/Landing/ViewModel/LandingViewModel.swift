@@ -5,7 +5,7 @@
 //  Created by Pranavan Sivarajah on 2024-06-06.
 //
 
-import Foundation
+import Combine
 
 protocol LandingViewModel: ObservableObject {
     var temperature: String { get }
@@ -17,5 +17,5 @@ protocol LandingViewModel: ObservableObject {
     var error: NetworkError? { get }
     
     func onTapSearchButton()
-    func onLoad() async
+    func onLoad()
 }

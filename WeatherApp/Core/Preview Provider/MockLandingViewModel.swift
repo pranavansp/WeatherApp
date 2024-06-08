@@ -20,7 +20,7 @@ class MockLandingViewModel: LandingViewModel {
         NSLog("mock onTapSearchButton")
     }
     
-    func onLoad() async {
+    func onLoad() {
         NSLog("mock onLoad")
     }
 }

@@ -8,7 +8,12 @@
 import Combine
 import Foundation
 
-class DefaultSearchViewModel: SearchViewModel {
+final class DefaultSearchViewModel: SearchViewModel {
+    
+    // MARK: - Actions
+    enum SearchViewModelAction {
+        case didSelect
+    }
     
     // MARK: - Internal
     @Published var searchKeyword: String = ""
@@ -18,31 +23,51 @@ class DefaultSearchViewModel: SearchViewModel {
     @Published var error: NetworkError? = nil
     
     // MARK: - Private
-    private var cancellable: Set<AnyCancellable> = []
     private let dataSource: SearchDataSourceProtocol
+    private var geocodingUpdateHandler: GeocodingUpdateHandler
+    private var cancellable: Set<AnyCancellable> = []
     
     // MARK: - Init
-    init(dataSource: SearchDataSourceProtocol = SearchDataSource()) {
+    init(dataSource: SearchDataSourceProtocol, updateHandler: @escaping GeocodingUpdateHandler) {
         self.dataSource = dataSource
+        self.geocodingUpdateHandler = updateHandler
         self.bind()
     }
     
+    //MARK: Private (set)
+    private (set) var actionPublisher: PassthroughSubject<SearchViewModelAction, Never> = PassthroughSubject()
+    
     // MARK: - Bind
-    private func bind(dueTime: TimeInterval = 0.8) {
+    private func bind() {
         $searchKeyword
-            .compactMap { $0 }
-            .filter { !$0.isEmpty }
-            .throttle(for: .seconds(dueTime), scheduler: DispatchQueue.main, latest: true)
+            .removeDuplicates()
+            .throttle(for: .seconds(0.8), scheduler: DispatchQueue.main, latest: true)
             .sink { keyword in
                 Task { [weak self] in
-                    await self?.fetchLocation(by: keyword)
+                    guard let self = self else { return }
+                    await self.fetchLocation(by: keyword)
                 }
             }
             .store(in: &cancellable)
     }
     
+    // MARK: - Internal
+    
+    func selectLocation(location: Geocoding) {
+        self.geocodingUpdateHandler(location)
+        self.actionPublisher.send(.didSelect)
+    }
+
     // MARK: - fetch locations
-    func fetchLocation(by keyword: String) async {
+    private func fetchLocation(by keyword: String) async {
+        /// Clear result array if keyword is empty
+        guard !keyword.isEmpty else {
+            await MainActor.run {
+                self.resultArray.removeAll()
+            }
+            return
+        }
+        /// Start network fetch
         Task { [weak self] in
             guard let self = self else { return }
             await MainActor.run {

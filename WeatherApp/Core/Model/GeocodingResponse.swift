@@ -40,8 +40,9 @@ struct Geocoding: Identifiable, Codable {
         self.init(name: name, localNames: nil, lat: nil, lon: nil, country: "Country", state: "State")
     }
     
+    // Create a label because the API response sometimes does not provide the country and state information.
     func getLabel() -> String {
-        let labelArray: [String?] = [name,state,country]
+        let labelArray: [String?] = [name, state, country]
         return labelArray.compactMap { $0 }.joined(separator: ", ")
     }
 }

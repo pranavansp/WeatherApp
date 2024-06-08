@@ -14,8 +14,12 @@ struct SearchView<ViewModel:SearchViewModel>: View {
     var body: some View {
         List {
             ForEach(viewModel.resultArray) { value in
-                Text(value.getLabel())
-                    .fontWeight(.semibold)
+                Button(action: {
+                    self.viewModel.selectLocation(location: value)
+                }, label: {
+                    Text(value.getLabel())
+                        .fontWeight(.semibold)
+                })
             }
         }
         .redacted(reason: viewModel.isLoading ? .placeholder : [])

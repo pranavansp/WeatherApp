@@ -12,4 +12,8 @@ class MockSearchViewModel : SearchViewModel {
     var error: NetworkError? = nil
     var searchKeyword: String = ""
     var resultArray: [Geocoding] = Geocoding.mock
+    
+    func selectLocation(location: Geocoding) {
+        print("mock : selected location \(location.getLabel())")
+    }
 }

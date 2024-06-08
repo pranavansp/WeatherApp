@@ -8,11 +8,12 @@
 import Foundation
 
 extension URLRouter {
-    static func getCurrentWeatherData(location: String) -> URLRouter {
+    static func getCurrentWeatherData(lat: Double, lon: Double) -> URLRouter {
         return URLRouter(
             path: "weather",
             queryItems: [
-                .init(name: "q", value: "\(location)"),
+                .init(name: "lat", value: "\(lat)"),
+                .init(name: "lon", value: "\(lon)"),
                 .init(name: "units", value: "metric")
             ],
             type: .data

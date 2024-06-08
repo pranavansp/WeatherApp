@@ -22,11 +22,10 @@ struct LandingView<ViewModel:LandingViewModel>: View {
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .onAppear {
-            Task {
-                await viewModel.onLoad()
-            }
+        .onFirstAppear {
+            viewModel.onLoad()
         }
+        .navigationTitle(Localization.App.title)
     }
     
     // Details View
@@ -51,7 +50,7 @@ struct LandingView<ViewModel:LandingViewModel>: View {
     private var searchLocationButton: some View {
         VStack {
             Button(Localization.Landing.searchTitle, systemImage: SystemImageResource.search.rawValue) {
-                // Navigation
+                self.viewModel.onTapSearchButton()
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)

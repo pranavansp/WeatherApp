@@ -10,7 +10,12 @@ import Combine
 
 typealias WeatherTemperature = Measurement<UnitTemperature>
 
-class DefaultLandingViewModel: LandingViewModel {
+final class DefaultLandingViewModel: LandingViewModel {
+    
+    // MARK: - Actions
+    enum LandingViewModelAction {
+        case onTapSearch(GeocodingUpdateHandler)
+    }
     
     // MARK: - Internal
     @Published var temperature: String = ""
@@ -21,6 +26,7 @@ class DefaultLandingViewModel: LandingViewModel {
     
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
+    @Published var locationManager: LocationManager
     
     // MARK: Private
     private var cancellable: Set<AnyCancellable> = []
@@ -31,25 +37,31 @@ class DefaultLandingViewModel: LandingViewModel {
         let numFormatter = NumberFormatter()
         numFormatter.maximumFractionDigits = 0
         let measurementFormatter = MeasurementFormatter()
-        /// Set the unit options to use the temperature without unit
+        // TODO: - Set the unit options to use the temperature without unit
         measurementFormatter.unitOptions = .temperatureWithoutUnit
         measurementFormatter.numberFormatter = numFormatter
         return measurementFormatter
     }
     
+    //MARK: Private (set)
+    private (set) var actionPublisher: PassthroughSubject<LandingViewModelAction, Never> = PassthroughSubject()
+    
     // MARK: Private subject
     private var temperatureMeasurement: PassthroughSubject<WeatherTemperature, Never> = PassthroughSubject()
     private var highLowTemperatureMeasurement: PassthroughSubject<(WeatherTemperature,WeatherTemperature), Never> = PassthroughSubject()
+    private var locationSubject: PassthroughSubject<(Double, Double), Never> = PassthroughSubject()
     
     // MARK: - Init
-    init(dataSource: LandingDataSourceProtocol = LandingDataSource()) {
+    init(dataSource: LandingDataSourceProtocol) {
         self.dataSource = dataSource
+        self.locationManager = LocationManager()
         self.bind()
     }
     
     // MARK: - Bind
     private func bind() {
         temperatureMeasurement
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
@@ -65,22 +77,53 @@ class DefaultLandingViewModel: LandingViewModel {
                 self.lowTemperature = self.measurementFormatter.string(from: low)
             }
             .store(in: &cancellable)
+        
+        locationSubject
+            .sink { lat, lon in
+                Task { [weak self] in
+                    guard let self = self else { return }
+                    await self.startFetch(lat: lat, lon: lon)
+                }
+            }
+            .store(in: &cancellable)
+        
+        locationManager
+            .$location
+            .removeDuplicates()
+            .compactMap { $0 }
+            .map {
+                return (Double($0.coordinate.latitude),Double($0.coordinate.longitude))
+            }
+            .sink { [weak self] lat, long in
+                guard let self = self else { return }
+                self.locationSubject.send((lat,long))
+            }
+            .store(in: &cancellable)
     }
     
     // MARK: - Internal
     func onTapSearchButton() {
-        
+        let action = LandingViewModelAction.onTapSearch { [weak self] location in
+            guard let lat = location.lat, let lon = location.lon else { return }
+            self?.locationSubject.send((lat,lon))
+        }
+        self.actionPublisher.send(action)
     }
     
     // MARK: - Load on view appear.
-    func onLoad() async {
+    func onLoad() {
+        locationManager.requestLocation()
+    }
+    
+    // MARK: - Fetch weather data from network
+    private func startFetch(lat: Double, lon: Double) async {
         Task { [weak self] in
             guard let self = self else { return }
             await MainActor.run {
                 self.isLoading = true
             }
             do {
-                let dataSourceFetch =  try await dataSource.getCurrentWeatherData(location: "Stockholm")
+                let dataSourceFetch = try await dataSource.getCurrentWeatherData(lat: lat, lon: lon)
                 // Set temperature values
                 self.temperatureMeasurement.send(Measurement(value: dataSourceFetch.main.temp, unit: UnitTemperature.celsius))
                 let highTemp = Measurement(value: dataSourceFetch.main.tempMax, unit: UnitTemperature.celsius)
@@ -92,6 +135,7 @@ class DefaultLandingViewModel: LandingViewModel {
                     self.isLoading = false
                 }
             } catch {
+                NSLog("Error: %@", error.localizedDescription)
                 await MainActor.run {
                     self.isLoading = false
                     self.error = .network(error: error)

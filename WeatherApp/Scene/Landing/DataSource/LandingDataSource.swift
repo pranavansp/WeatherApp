@@ -8,12 +8,12 @@
 import Foundation
 
 protocol LandingDataSourceProtocol {
-    func getCurrentWeatherData(location: String) async throws -> CurrentWeatherDataResponse
+    func getCurrentWeatherData(lat: Double, lon: Double) async throws -> CurrentWeatherDataResponse
 }
 
 struct LandingDataSource: LandingDataSourceProtocol {
-    func getCurrentWeatherData(location: String) async throws -> CurrentWeatherDataResponse {
-        guard let route = URLRouter.getCurrentWeatherData(location: location).urlComponents?.url else {
+    func getCurrentWeatherData(lat: Double, lon: Double) async throws -> CurrentWeatherDataResponse {
+        guard let route = URLRouter.getCurrentWeatherData(lat: lat, lon: lon).urlComponents?.url else {
             throw NetworkError.invalidURL
         }
         var request = URLRequest(url: route)
