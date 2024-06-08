@@ -25,20 +25,21 @@ class AssignmentRouterTests: XCTestCase {
     }
 
     func testStartRoot() {
-        let expectation = self.expectation(description: "Root action should be sent")
-
+        let expectation = self.expectation(description: "backToHome action should be sent")
+        let geocodingUpdateHandler: GeocodingUpdateHandler = { _ in }
+        
         router.routingActionSubject
             .sink { action in
                 switch action {
-                case .root:
+                case .searchView(_):
                     expectation.fulfill()
                 default:
-                    XCTFail("Action should be root")
+                    XCTFail("Action should be backToHome")
                 }
             }
             .store(in: &cancellable)
-
-        router.start()
+        
+        router.landingViewActionSubject.send(.onTapSearch(geocodingUpdateHandler))
 
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -56,9 +57,7 @@ class AssignmentRouterTests: XCTestCase {
                 }
             }
             .store(in: &cancellable)
-        // Force unwrapping: Data from mock
-        let geocoding = Geocoding.mock.first!
-        router.searchViewActionSubject.send(.didSelect(geocoding))
+        router.searchViewActionSubject.send(.didSelect)
 
         waitForExpectations(timeout: 1, handler: nil)
     }

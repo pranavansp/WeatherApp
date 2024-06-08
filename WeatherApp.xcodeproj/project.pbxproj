@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E928B49F2C11D03B001EC804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E928B49E2C11D03B001EC804 /* Assets.xcassets */; };
 		E928B4A22C11D03B001EC804 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E928B4A12C11D03B001EC804 /* Preview Assets.xcassets */; };
-		E928B4AC2C11D03B001EC804 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */; };
 		E928B4B62C11D03B001EC804 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4B52C11D03B001EC804 /* WeatherAppUITests.swift */; };
 		E928B4B82C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4B72C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift */; };
 		E928B4CD2C11D19B001EC804 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B4CC2C11D19B001EC804 /* NetworkUtils.swift */; };
@@ -42,6 +41,9 @@
 		E928B5122C145EBE001EC804 /* WeatherAppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */; };
 		E928B5152C14AB69001EC804 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5142C14AB69001EC804 /* LocationManager.swift */; };
 		E928B5172C14B0CE001EC804 /* FirstAppearMofier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5162C14B0CE001EC804 /* FirstAppearMofier.swift */; };
+		E928B5192C14B96F001EC804 /* DefaultLandingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */; };
+		E928B51D2C14BA21001EC804 /* MockLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */; };
+		E928B5202C14CBA2001EC804 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +68,6 @@
 		E928B49E2C11D03B001EC804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E928B4A12C11D03B001EC804 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E928B4A72C11D03B001EC804 /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
 		E928B4B12C11D03B001EC804 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E928B4B52C11D03B001EC804 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		E928B4B72C11D03B001EC804 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -102,6 +103,9 @@
 		E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppRouterTests.swift; sourceTree = "<group>"; };
 		E928B5142C14AB69001EC804 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E928B5162C14B0CE001EC804 /* FirstAppearMofier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAppearMofier.swift; sourceTree = "<group>"; };
+		E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLandingViewModelTests.swift; sourceTree = "<group>"; };
+		E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLandingDataSource.swift; sourceTree = "<group>"; };
+		E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +175,9 @@
 		E928B4AA2C11D03B001EC804 /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				E928B4AB2C11D03B001EC804 /* WeatherAppTests.swift */,
+				E928B51E2C14BAE3001EC804 /* Mock Helper */,
 				E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */,
+				E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -375,6 +380,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		E928B51E2C14BAE3001EC804 /* Mock Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */,
+				E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */,
+			);
+			path = "Mock Helper";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -541,8 +555,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E928B4AC2C11D03B001EC804 /* WeatherAppTests.swift in Sources */,
+				E928B5202C14CBA2001EC804 /* MockLocationManager.swift in Sources */,
+				E928B51D2C14BA21001EC804 /* MockLandingDataSource.swift in Sources */,
 				E928B5122C145EBE001EC804 /* WeatherAppRouterTests.swift in Sources */,
+				E928B5192C14B96F001EC804 /* DefaultLandingViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

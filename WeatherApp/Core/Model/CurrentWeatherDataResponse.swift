@@ -10,7 +10,7 @@ import Foundation
 // MARK: - CurrentWeatherDataResponse
 struct CurrentWeatherDataResponse: Codable {
     var id: Int
-    var coord: Coord
+    var coord: Coord?
     var weather: [Weather]?
     var base: String?
     var main: Main

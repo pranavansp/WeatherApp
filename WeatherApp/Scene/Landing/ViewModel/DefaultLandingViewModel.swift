@@ -26,11 +26,11 @@ final class DefaultLandingViewModel: LandingViewModel {
     
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
-    @Published var locationManager: LocationManager
     
     // MARK: Private
     private var cancellable: Set<AnyCancellable> = []
     private let dataSource: LandingDataSourceProtocol
+    private var locationManager: any LocationManagerProtocol
     
     /// Create a computed property for MeasurementFormatter
     private var measurementFormatter: MeasurementFormatter {
@@ -52,9 +52,9 @@ final class DefaultLandingViewModel: LandingViewModel {
     private var locationSubject: PassthroughSubject<(Double, Double), Never> = PassthroughSubject()
     
     // MARK: - Init
-    init(dataSource: LandingDataSourceProtocol) {
+    init(dataSource: LandingDataSourceProtocol, locationManager: any LocationManagerProtocol = LocationManager()) {
         self.dataSource = dataSource
-        self.locationManager = LocationManager()
+        self.locationManager = locationManager
         self.bind()
     }
     
@@ -88,7 +88,7 @@ final class DefaultLandingViewModel: LandingViewModel {
             .store(in: &cancellable)
         
         locationManager
-            .$location
+            .location
             .removeDuplicates()
             .compactMap { $0 }
             .map {

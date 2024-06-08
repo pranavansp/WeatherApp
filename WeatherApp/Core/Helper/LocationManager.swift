@@ -6,15 +6,21 @@
 //
 
 import CoreLocation
+import Combine
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+protocol LocationManagerProtocol: ObservableObject {
+    var location: PassthroughSubject<CLLocation?, Never> { get }
+    func requestLocation()
+}
+
+class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
     // MARK: - Private
     private var locationManager: CLLocationManager
 
     // MARK: - Internal
-    @Published var location: CLLocation? = nil
-    @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    var location: PassthroughSubject<CLLocation?, Never> = PassthroughSubject()
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     override init() {
         self.locationManager = CLLocationManager()
@@ -35,7 +41,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let latestLocation = locations.last else { return }
         NSLog("Location update in progress")
-        self.location = latestLocation
+        self.location.send(latestLocation)
         self.locationManager.stopUpdatingLocation()
     }
 
