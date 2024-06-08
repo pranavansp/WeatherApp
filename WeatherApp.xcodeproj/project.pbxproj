@@ -44,6 +44,7 @@
 		E928B5192C14B96F001EC804 /* DefaultLandingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */; };
 		E928B51D2C14BA21001EC804 /* MockLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */; };
 		E928B5202C14CBA2001EC804 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */; };
+		E928B5222C14D8F1001EC804 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5212C14D8F1001EC804 /* TemperatureType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLandingViewModelTests.swift; sourceTree = "<group>"; };
 		E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLandingDataSource.swift; sourceTree = "<group>"; };
 		E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
+		E928B5212C14D8F1001EC804 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +326,7 @@
 			children = (
 				E928B4EF2C11F0BD001EC804 /* CurrentWeatherDataResponse.swift */,
 				E928B5042C13661E001EC804 /* GeocodingResponse.swift */,
+				E928B5212C14D8F1001EC804 /* TemperatureType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				E928B5012C136385001EC804 /* SearchDataSource.swift in Sources */,
 				E928B4D12C11D1CE001EC804 /* URLRouter.swift in Sources */,
 				E928B50E2C145AF4001EC804 /* AppDelegate.swift in Sources */,
+				E928B5222C14D8F1001EC804 /* TemperatureType.swift in Sources */,
 				E928B5052C13661E001EC804 /* GeocodingResponse.swift in Sources */,
 				E928B4F32C11F1AA001EC804 /* URLRouter+Weather.swift in Sources */,
 				E928B5102C145B20001EC804 /* SceneDelegate.swift in Sources */,

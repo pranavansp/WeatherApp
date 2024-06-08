@@ -23,6 +23,7 @@ final class DefaultLandingViewModel: LandingViewModel {
     @Published var weatherType: String = ""
     @Published var higherTemperature: String = ""
     @Published var lowTemperature: String = ""
+    @Published var temperatureType: TemperatureType = .celsius
     
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
@@ -38,7 +39,7 @@ final class DefaultLandingViewModel: LandingViewModel {
         numFormatter.maximumFractionDigits = 0
         let measurementFormatter = MeasurementFormatter()
         // TODO: - Set the unit options to use the temperature without unit
-        measurementFormatter.unitOptions = .temperatureWithoutUnit
+        measurementFormatter.unitOptions = .providedUnit
         measurementFormatter.numberFormatter = numFormatter
         return measurementFormatter
     }
@@ -61,20 +62,30 @@ final class DefaultLandingViewModel: LandingViewModel {
     // MARK: - Bind
     private func bind() {
         temperatureMeasurement
-            .removeDuplicates()
+            .combineLatest($temperatureType)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
+            .sink { [weak self] value, type in
                 guard let self = self else { return }
-                self.temperature = self.measurementFormatter.string(from: value)
+                var temperatureMeasurement = value
+                temperatureMeasurement = temperatureMeasurement.converted(to: type.unitType)
+                self.temperature = self.measurementFormatter.string(from: temperatureMeasurement)
             }
             .store(in: &cancellable)
         
         highLowTemperatureMeasurement
+            .combineLatest($temperatureType)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] high, low in
+            .sink { [weak self] temperatures, type in
                 guard let self = self else { return }
-                self.higherTemperature = self.measurementFormatter.string(from: high)
-                self.lowTemperature = self.measurementFormatter.string(from: low)
+                // High
+                var highTemperatureMeasurement = temperatures.0
+                highTemperatureMeasurement = highTemperatureMeasurement.converted(to: type.unitType)
+                // Low
+                var lowTemperatureMeasurement = temperatures.1
+                lowTemperatureMeasurement = lowTemperatureMeasurement.converted(to: type.unitType)
+                
+                self.higherTemperature = self.measurementFormatter.string(from: highTemperatureMeasurement)
+                self.lowTemperature = self.measurementFormatter.string(from: lowTemperatureMeasurement)
             }
             .store(in: &cancellable)
         
@@ -142,5 +153,10 @@ final class DefaultLandingViewModel: LandingViewModel {
                 }
             }
         }
+    }
+    
+    /// Switch temperature type
+    func switchTemperatureType(){
+        temperatureType = (temperatureType == .celsius) ? .fahrenheit : .celsius
     }
 }

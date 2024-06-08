@@ -8,6 +8,7 @@
 import Foundation
 
 class MockLandingViewModel: LandingViewModel {
+    var temperatureType: TemperatureType = .celsius
     var temperature: String = "19.0"
     var location: String = "Stockholm"
     var weatherType: String = "Party Cloud"
@@ -22,5 +23,10 @@ class MockLandingViewModel: LandingViewModel {
     
     func onLoad() {
         NSLog("mock onLoad")
+    }
+    
+    func switchTemperatureType() {
+        temperatureType = (temperatureType == .celsius) ? .fahrenheit : .celsius
+        NSLog("mock switchTemperatureType")
     }
 }

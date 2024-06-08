@@ -18,5 +18,11 @@ extension Localization {
         public static var temperature:(_ hight: String,_ low: String) -> LocalizedStringKey = { hight, low in
             return "landing.temp.high.\(hight).low.\(low)"
         }
+        public static var switchToFahrenheit: LocalizedStringKey {
+            return "landing.switch.to.fahrenheit"
+        }
+        public static var switchToCelsius: LocalizedStringKey {
+            return "landing.switch.to.celsius"
+        }
     }
 }

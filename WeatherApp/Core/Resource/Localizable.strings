@@ -14,3 +14,5 @@
 "landing.title" = "My Location";
 "landing.search.title" = "Search for a city or airport";
 "landing.temp.high.%@.low.%@" = "H:%@ L:%@";
+"landing.switch.to.fahrenheit" = "Switch to fahrenheit";
+"landing.switch.to.celsius" = "Switch to celsius";

@@ -15,7 +15,9 @@ protocol LandingViewModel: ObservableObject {
     var lowTemperature : String { get }
     var isLoading: Bool { get }
     var error: NetworkError? { get }
-    
+    var temperatureType: TemperatureType { get }
+        
     func onTapSearchButton()
     func onLoad()
+    func switchTemperatureType()
 }
