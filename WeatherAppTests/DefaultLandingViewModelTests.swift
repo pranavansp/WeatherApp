@@ -22,21 +22,22 @@ final class DefaultLandingViewModelTests: XCTestCase {
         defaultLandingViewModel = nil
         super.tearDown()
     }
-   
+    
     func testTemperatureForReceivedResponse() async {
         // Given
         defaultLandingViewModel = DefaultLandingViewModel(dataSource: MockLandingDataSource(), locationManager: MockLocationManager())
-        
+        let expectedValues = ["", "15°C"]
+        var receivedValues: [String] = []
         let expectation = expectation(description: "Data fetched and decoded successfully")
         
         // When
         defaultLandingViewModel.$temperature
-            .dropFirst()
             .sink { [weak self] temperature in
-                guard let self else { return }
-                XCTAssertEqual(temperature, "15°")
-                XCTAssertNil(self.defaultLandingViewModel.error)
-                expectation.fulfill()
+                receivedValues.append(temperature)
+                if receivedValues == expectedValues {
+                    expectation.fulfill()
+                }
+                XCTAssertNil(self?.defaultLandingViewModel.error)
             }
             .store(in: &cancellable)
         
@@ -44,6 +45,7 @@ final class DefaultLandingViewModelTests: XCTestCase {
         defaultLandingViewModel.onLoad()
         
         await fulfillment(of: [expectation], timeout: 5)
+        XCTAssertEqual(receivedValues, expectedValues)
     }
     
     func testActionResultOnSearchButtonTap() async {
@@ -64,6 +66,33 @@ final class DefaultLandingViewModelTests: XCTestCase {
         defaultLandingViewModel.onTapSearchButton()
         
         await fulfillment(of: [expectation], timeout: 5)
+    }
+    
+    func testTemperatureFirstSwitch() async {
+        // Given
+        defaultLandingViewModel = DefaultLandingViewModel(dataSource: MockLandingDataSource(), locationManager: MockLocationManager())
+        
+        let expectedValues = [TemperatureType.celsius, TemperatureType.fahrenheit, TemperatureType.celsius]
+        var receivedValues: [TemperatureType] = []
+        
+        let expectation = expectation(description: "Switched celsius between fahrenheit successfully")
+        
+        // When
+        defaultLandingViewModel
+            .$temperatureType
+            .sink { type in
+                receivedValues.append(type)
+                if receivedValues == expectedValues {
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &cancellable)
+        
+        // Then
+        defaultLandingViewModel.switchTemperatureType() // To F
+        defaultLandingViewModel.switchTemperatureType() // To C
+        await fulfillment(of: [expectation], timeout: 5)
+        XCTAssertEqual(receivedValues, expectedValues)
     }
     
     func testNetworkErrorShowsError() async {
