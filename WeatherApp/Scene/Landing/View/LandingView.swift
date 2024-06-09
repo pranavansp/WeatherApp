@@ -27,6 +27,11 @@ struct LandingView<ViewModel:LandingViewModel>: View {
         }
         .disabled(viewModel.isLoading)
         .navigationTitle(Localization.App.title)
+        .alert(isPresented: $viewModel.showErrorAlert, error: viewModel.error) {
+            Button(Localization.App.ok) {
+                viewModel.showErrorAlert.toggle()
+            }
+        }
     }
     
     // Details View

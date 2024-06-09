@@ -24,6 +24,7 @@ final class DefaultLandingViewModel: LandingViewModel {
     @Published var higherTemperature: String = ""
     @Published var lowTemperature: String = ""
     @Published var temperatureType: TemperatureType = .celsius
+    @Published var showErrorAlert: Bool = false
     
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
@@ -150,6 +151,7 @@ final class DefaultLandingViewModel: LandingViewModel {
                 await MainActor.run {
                     self.isLoading = false
                     self.error = .network(error: error)
+                    self.showErrorAlert = true
                 }
             }
         }

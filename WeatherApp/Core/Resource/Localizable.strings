@@ -9,6 +9,8 @@
 // MARK: - APP
 "weatherApp.title" = "Weather App";
 "weatherApp.loading.title" = "Please wait...";
+"weatherApp.error" = "Error";
+"weatherApp.ok" = "Ok";
 
 //MARK: - Landing
 "landing.title" = "My Location";

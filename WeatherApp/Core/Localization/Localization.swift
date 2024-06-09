@@ -15,5 +15,11 @@ public enum Localization {
         public static var loadingTitle: LocalizedStringKey {
             return "weatherApp.loading.title"
         }
+        public static var error: LocalizedStringKey {
+            return "weatherApp.error"
+        }
+        public static var ok: LocalizedStringKey {
+            return "weatherApp.ok"
+        }
     }
 }

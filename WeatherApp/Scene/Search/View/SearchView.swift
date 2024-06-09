@@ -24,6 +24,13 @@ struct SearchView<ViewModel:SearchViewModel>: View {
         }
         .redacted(reason: viewModel.isLoading ? .placeholder : [])
         .searchable(text: $viewModel.searchKeyword)
+        .autocorrectionDisabled(true)
+        .keyboardType(.alphabet)
+        .alert(isPresented: $viewModel.showErrorAlert, error: viewModel.error) {
+            Button(Localization.App.ok) {
+                viewModel.showErrorAlert.toggle()
+            }
+        }
     }
 }
 

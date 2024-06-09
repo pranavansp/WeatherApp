@@ -21,6 +21,7 @@ final class DefaultSearchViewModel: SearchViewModel {
     
     @MainActor @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
+    @Published var showErrorAlert: Bool = false
     
     // MARK: - Private
     private let dataSource: SearchDataSourceProtocol
@@ -84,6 +85,7 @@ final class DefaultSearchViewModel: SearchViewModel {
                 await MainActor.run {
                     self.isLoading = false
                     self.error = .network(error: error)
+                    self.showErrorAlert = true
                 }
             }
         }
