@@ -17,10 +17,10 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
     
     // MARK: - Private
     private var locationManager: CLLocationManager
+    private var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     // MARK: - Internal
     var location: PassthroughSubject<CLLocation?, Never> = PassthroughSubject()
-    var authorizationStatus: CLAuthorizationStatus = .notDetermined
 
     override init() {
         self.locationManager = CLLocationManager()

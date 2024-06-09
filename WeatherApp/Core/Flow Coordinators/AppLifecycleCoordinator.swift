@@ -9,7 +9,6 @@ import UIKit
 import Combine
 import SwiftUI
 
-@MainActor
 class AppLifecycleCoordinator: ObservableObject {
     
     // MARK: - Private

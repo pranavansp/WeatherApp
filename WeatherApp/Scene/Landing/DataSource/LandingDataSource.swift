@@ -18,6 +18,15 @@ struct LandingDataSource: LandingDataSourceProtocol {
         }
         var request = URLRequest(url: route)
         request.httpMethod = NetworkUtils.HTTPMethod.get.rawValue
+        // TODO: - Cache revalidation is not supported by origin (openweathermap.org)
+        /*
+        // Allow caching for private caches for 10 minutes, then require revalidation:
+        request.addValue("public, max-age=3600, must-revalidate", forHTTPHeaderField:"Cache-Control")
+         
+        // Use existing cache data if origin can revalidate it.
+        request.cachePolicy = .reloadRevalidatingCacheData
+        */
+        /// Setting the default cache option since it should provide updated weather details.
         let currentWeatherDataResponse: CurrentWeatherDataResponse = try await NetworkUtils().fetch(request)
         return currentWeatherDataResponse
     }

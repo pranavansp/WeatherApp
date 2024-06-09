@@ -61,7 +61,7 @@ struct LandingView<ViewModel:LandingViewModel>: View {
         .padding(.bottom)
     }
     
-    // Temperature change
+    // Temperature switch
     var temperatureSwitch: some View {
         VStack {
             Button(viewModel.temperatureType.displayText) {
