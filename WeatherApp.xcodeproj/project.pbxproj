@@ -46,6 +46,7 @@
 		E928B5202C14CBA2001EC804 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */; };
 		E928B5222C14D8F1001EC804 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5212C14D8F1001EC804 /* TemperatureType.swift */; };
 		E928B5242C1710A8001EC804 /* LocationManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5232C1710A8001EC804 /* LocationManagerError.swift */; };
+		E928B5282C17B095001EC804 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E928B5272C17B095001EC804 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		E928B5212C14D8F1001EC804 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
 		E928B5232C1710A8001EC804 /* LocationManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerError.swift; sourceTree = "<group>"; };
+		E928B5272C17B095001EC804 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		E928B48E2C11D039001EC804 = {
 			isa = PBXGroup;
 			children = (
+				E928B5272C17B095001EC804 /* README.md */,
 				E928B4992C11D039001EC804 /* WeatherApp */,
 				E928B4AA2C11D03B001EC804 /* WeatherAppTests */,
 				E928B4B42C11D03B001EC804 /* WeatherAppUITests */,
@@ -501,6 +504,7 @@
 			files = (
 				E928B4A22C11D03B001EC804 /* Preview Assets.xcassets in Resources */,
 				E928B4E22C11E88C001EC804 /* Localizable.strings in Resources */,
+				E928B5282C17B095001EC804 /* README.md in Resources */,
 				E928B49F2C11D03B001EC804 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
