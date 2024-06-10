@@ -183,8 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				E928B51E2C14BAE3001EC804 /* Mock Helper */,
-				E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */,
 				E928B5182C14B96F001EC804 /* DefaultLandingViewModelTests.swift */,
+				E928B5112C145EBE001EC804 /* WeatherAppRouterTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";

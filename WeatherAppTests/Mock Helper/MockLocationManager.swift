@@ -11,7 +11,7 @@ import Combine
 import CoreLocation
 
 class MockLocationManager: LocationManagerProtocol {
-    
+    var error: PassthroughSubject<WeatherApp.LocationManagerError?, Never> = PassthroughSubject()
     var location: PassthroughSubject<CLLocation?, Never> = PassthroughSubject()
     
     func requestLocation() {
