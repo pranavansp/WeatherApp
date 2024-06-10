@@ -13,11 +13,17 @@ protocol LandingViewModel: ObservableObject {
     var weatherType: String { get }
     var higherTemperature : String { get }
     var lowTemperature : String { get }
+    var temperatureType: TemperatureType { get }
     
     var isLoading: Bool { get }
+    
+    // Network
     var error: NetworkError? { get }
     var showErrorAlert: Bool { get set }
-    var temperatureType: TemperatureType { get }
+    
+    // Location
+    var locationError: LocationManagerError? { get }
+    var showLocationErrorAlert: Bool { get set }
         
     func onTapSearchButton()
     func onLoad()

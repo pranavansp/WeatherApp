@@ -32,6 +32,15 @@ struct LandingView<ViewModel:LandingViewModel>: View {
                 viewModel.showErrorAlert.toggle()
             }
         }
+        .alert(isPresented: $viewModel.showLocationErrorAlert, error: viewModel.locationError) {
+            Button(Localization.Landing.noThanks) {
+                viewModel.showLocationErrorAlert.toggle()
+            }
+            Button(Localization.Landing.settings) {
+                viewModel.showLocationErrorAlert.toggle()
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+        }
     }
     
     // Details View
@@ -83,8 +92,16 @@ struct LandingView<ViewModel:LandingViewModel>: View {
     }
 }
 
+
 #Preview {
     NavigationStack {
         LandingView(viewModel: MockLandingViewModel())
     }
+}
+
+#Preview {
+    NavigationStack {
+        LandingView(viewModel: MockLandingViewModel(locationError: .accessDenied, showLocationErrorAlert: true))
+    }
+    .previewDisplayName("Show Error")
 }

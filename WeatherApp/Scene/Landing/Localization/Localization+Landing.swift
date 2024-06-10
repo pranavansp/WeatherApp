@@ -24,5 +24,11 @@ extension Localization {
         public static var switchToCelsius: LocalizedStringKey {
             return "landing.switch.to.celsius"
         }
+        public static var settings: LocalizedStringKey {
+            return "landing.error.location.settings"
+        }
+        public static var noThanks: LocalizedStringKey {
+            return "landing.error.location.no.thanks"
+        }
     }
 }

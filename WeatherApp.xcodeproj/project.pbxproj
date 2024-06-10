@@ -45,6 +45,7 @@
 		E928B51D2C14BA21001EC804 /* MockLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */; };
 		E928B5202C14CBA2001EC804 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */; };
 		E928B5222C14D8F1001EC804 /* TemperatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5212C14D8F1001EC804 /* TemperatureType.swift */; };
+		E928B5242C1710A8001EC804 /* LocationManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928B5232C1710A8001EC804 /* LocationManagerError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		E928B51C2C14BA21001EC804 /* MockLandingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLandingDataSource.swift; sourceTree = "<group>"; };
 		E928B51F2C14CBA2001EC804 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		E928B5212C14D8F1001EC804 /* TemperatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureType.swift; sourceTree = "<group>"; };
+		E928B5232C1710A8001EC804 /* LocationManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 				E928B4CE2C11D1B1001EC804 /* NetworkError.swift */,
 				E928B4D02C11D1CE001EC804 /* URLRouter.swift */,
 				E928B5062C1366CC001EC804 /* APIType.swift */,
+				E928B5232C1710A8001EC804 /* LocationManagerError.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				E928B5072C1366CC001EC804 /* APIType.swift in Sources */,
 				E928B4F92C1360F2001EC804 /* SearchView.swift in Sources */,
 				E928B4FF2C13621D001EC804 /* MockSearchViewModel.swift in Sources */,
+				E928B5242C1710A8001EC804 /* LocationManagerError.swift in Sources */,
 				E928B4FB2C1361A1001EC804 /* SearchViewModel.swift in Sources */,
 				E928B50C2C145519001EC804 /* WeatherAppRouter.swift in Sources */,
 				E928B50A2C1454F2001EC804 /* AppLifecycleCoordinator.swift in Sources */,

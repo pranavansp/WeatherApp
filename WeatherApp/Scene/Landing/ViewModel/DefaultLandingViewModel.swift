@@ -24,10 +24,16 @@ final class DefaultLandingViewModel: LandingViewModel {
     @Published var higherTemperature: String = ""
     @Published var lowTemperature: String = ""
     @Published var temperatureType: TemperatureType = .celsius
+   
+    @Published var isLoading: Bool = true
+    
+    /// Network
+    @Published var error: NetworkError? = nil
     @Published var showErrorAlert: Bool = false
     
-    @MainActor @Published var isLoading: Bool = true
-    @Published var error: NetworkError? = nil
+    /// Location based
+    @Published var locationError: LocationManagerError? = nil
+    @Published var showLocationErrorAlert: Bool = false
     
     // MARK: Private
     private var cancellable: Set<AnyCancellable> = []
@@ -91,11 +97,9 @@ final class DefaultLandingViewModel: LandingViewModel {
             .store(in: &cancellable)
         
         locationSubject
-            .sink { lat, lon in
-                Task { [weak self] in
-                    guard let self = self else { return }
-                    await self.startFetch(lat: lat, lon: lon)
-                }
+            .sink { [weak self] lat, lon in
+                guard let self = self else { return }
+                self.startFetch(lat: lat, lon: lon)
             }
             .store(in: &cancellable)
         
@@ -103,12 +107,22 @@ final class DefaultLandingViewModel: LandingViewModel {
             .location
             .removeDuplicates()
             .compactMap { $0 }
-            .map {
-                return (Double($0.coordinate.latitude),Double($0.coordinate.longitude))
-            }
+            .map { (Double($0.coordinate.latitude),Double($0.coordinate.longitude)) }
             .sink { [weak self] lat, long in
                 guard let self = self else { return }
                 self.locationSubject.send((lat,long))
+            }
+            .store(in: &cancellable)
+        
+        locationManager
+            .error
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                guard let self = self else { return }
+                self.showLocationErrorAlert = true
+                self.locationError = error
+                self.isLoading = false
             }
             .store(in: &cancellable)
     }
@@ -116,18 +130,29 @@ final class DefaultLandingViewModel: LandingViewModel {
     // MARK: - Internal
     func onTapSearchButton() {
         let action = LandingViewModelAction.onTapSearch { [weak self] location in
+            guard let self = self else { return }
             guard let lat = location.lat, let lon = location.lon else { return }
-            self?.locationSubject.send((lat,lon))
+            self.locationSubject.send((lat,lon))
         }
         self.actionPublisher.send(action)
     }
     
-    // MARK: - Load on view appear.
+    // Load on view appear.
     func onLoad() {
         locationManager.requestLocation()
     }
     
     // MARK: - Fetch weather data from network
+    
+    // To prevent memory leaks, add the Task outside the sink.
+    // Using a separate method for starting the fetch helps avoid memory leaks.
+    private func startFetch(lat: Double, lon: Double) {
+        Task { [weak self] in
+            guard let self = self else { return }
+            await self.startFetch(lat: lat, lon: lon)
+        }
+    }
+    
     private func startFetch(lat: Double, lon: Double) async {
         Task { [weak self] in
             guard let self = self else { return }

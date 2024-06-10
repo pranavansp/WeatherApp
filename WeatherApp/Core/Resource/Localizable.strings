@@ -18,3 +18,5 @@
 "landing.temp.high.%@.low.%@" = "H:%@ L:%@";
 "landing.switch.to.fahrenheit" = "Switch to fahrenheit";
 "landing.switch.to.celsius" = "Switch to celsius";
+"landing.error.location.settings" = "Go to Settings";
+"landing.error.location.no.thanks" = "No, thanks";

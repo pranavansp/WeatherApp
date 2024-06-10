@@ -18,7 +18,7 @@ struct SearchDataSource: SearchDataSourceProtocol {
         }
         var request = URLRequest(url: route)
         request.httpMethod = NetworkUtils.HTTPMethod.get.rawValue
-        /// Use existing cache data under all conditions. Loaded from the origin if there is no cache.
+        // Use existing cache data in all conditions. Load from the origin only if there is no cache.
         request.cachePolicy = .returnCacheDataElseLoad
         let geocodingResponse: GeocodingResponse = try await NetworkUtils().fetch(request)
         return geocodingResponse

@@ -16,7 +16,16 @@ class MockLandingViewModel: LandingViewModel {
     var error: NetworkError? = nil
     var higherTemperature: String = "19"
     var lowTemperature: String = "10"
-    var  showErrorAlert: Bool = false
+    var showErrorAlert: Bool = false
+    var locationError: LocationManagerError? = nil
+    var showLocationErrorAlert: Bool = false
+    
+    init(error: NetworkError? = nil, showErrorAlert: Bool = false, locationError: LocationManagerError? = nil, showLocationErrorAlert: Bool = false) {
+        self.error = error
+        self.showErrorAlert = showErrorAlert
+        self.locationError = locationError
+        self.showLocationErrorAlert = showLocationErrorAlert
+    }
     
     func onTapSearchButton() {
         NSLog("mock onTapSearchButton")

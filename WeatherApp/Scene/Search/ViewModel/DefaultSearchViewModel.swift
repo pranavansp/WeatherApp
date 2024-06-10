@@ -43,11 +43,9 @@ final class DefaultSearchViewModel: SearchViewModel {
         $searchKeyword
             .removeDuplicates()
             .throttle(for: .seconds(0.8), scheduler: DispatchQueue.main, latest: true)
-            .sink { keyword in
-                Task { [weak self] in
-                    guard let self = self else { return }
-                    await self.fetchLocation(by: keyword)
-                }
+            .sink { [weak self] keyword in
+                guard let self = self else { return }
+                self.startFetch(for: keyword)
             }
             .store(in: &cancellable)
     }
@@ -57,6 +55,15 @@ final class DefaultSearchViewModel: SearchViewModel {
     func selectLocation(location: Geocoding) {
         self.geocodingUpdateHandler(location)
         self.actionPublisher.send(.didSelect)
+    }
+    
+    // To prevent memory leaks, add the Task outside the sink.
+    // Using a separate method for starting the fetch helps avoid memory leaks.
+    private func startFetch(for keyword: String) {
+        Task { [weak self] in
+            guard let self = self else { return }
+            await self.fetchLocation(by: keyword)
+        }
     }
 
     // MARK: - fetch locations

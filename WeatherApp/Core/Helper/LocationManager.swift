@@ -10,6 +10,7 @@ import Combine
 
 protocol LocationManagerProtocol: ObservableObject {
     var location: PassthroughSubject<CLLocation?, Never> { get }
+    var error: PassthroughSubject<LocationManagerError?, Never> { get }
     func requestLocation()
 }
 
@@ -21,7 +22,8 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
 
     // MARK: - Internal
     var location: PassthroughSubject<CLLocation?, Never> = PassthroughSubject()
-
+    var error: PassthroughSubject<LocationManagerError?, Never> = PassthroughSubject()
+    
     override init() {
         self.locationManager = CLLocationManager()
         super.init()
@@ -35,6 +37,7 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
         if locationManager.authorizationStatus == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
+        self.checkStatusForAlert()
     }
 
     // CLLocationManagerDelegate
@@ -47,5 +50,14 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.authorizationStatus = status
+        self.checkStatusForAlert()
+    }
+    
+    func checkStatusForAlert() {
+        if (locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted) {
+            let error = LocationManagerError.accessDenied
+            NSLog("Location error: %@", error.localizedDescription)
+            self.error.send(error)
+        }
     }
 }

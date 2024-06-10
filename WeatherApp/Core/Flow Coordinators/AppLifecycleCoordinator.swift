@@ -58,7 +58,8 @@ class AppLifecycleCoordinator: ObservableObject {
         viewModel.actionPublisher
             .subscribe(actionRouter.searchViewActionSubject)
             .store(in: &cancellable)
-        show(SearchView(viewModel: viewModel), animated: true)
+        let searchView = SearchView(viewModel: viewModel)
+        show(searchView, animated: true)
     }
     
     private func show(_ view: some View, animated: Bool = true) {
