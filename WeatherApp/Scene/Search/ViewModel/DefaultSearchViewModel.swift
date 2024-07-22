@@ -68,7 +68,7 @@ final class DefaultSearchViewModel: SearchViewModel {
 
     // MARK: - fetch locations
     private func fetchLocation(by keyword: String) async {
-        /// Clear result array if keyword is empty
+        /// Clear the result array and early exit if keyword is less than 2.
         guard keyword.count > 2 else {
             await MainActor.run {
                 self.resultArray.removeAll()
