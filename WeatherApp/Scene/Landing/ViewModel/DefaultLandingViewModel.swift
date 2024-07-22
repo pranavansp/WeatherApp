@@ -60,7 +60,7 @@ final class DefaultLandingViewModel: LandingViewModel {
     private let locationSubject: PassthroughSubject<(Double, Double), Never> = PassthroughSubject()
     
     // MARK: - Init
-    init(dataSource: LandingDataSourceProtocol, locationManager: some LocationManagerProtocol = LocationManager()) {
+    init(dataSource: LandingDataSourceProtocol, locationManager: any LocationManagerProtocol = LocationManager()) {
         self.dataSource = dataSource
         self.locationManager = locationManager
         self.bind()
