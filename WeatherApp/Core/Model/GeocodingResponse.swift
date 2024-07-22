@@ -10,7 +10,7 @@ import Foundation
 typealias GeocodingResponse = [Geocoding]
 
 struct Geocoding: Identifiable, Codable {
-    var id: UUID = UUID()
+    let id: UUID = UUID()
     let name: String?
     let localNames: [String: String]?
     let lat: Double?

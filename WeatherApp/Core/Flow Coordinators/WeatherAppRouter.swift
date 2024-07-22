@@ -11,13 +11,13 @@ typealias GeocodingUpdateHandler = (_ location: Geocoding) -> Void
 
 class WeatherAppRouter {
     
-    public enum RoutingAction {
+    enum RoutingAction {
         case searchView(updateHandler: GeocodingUpdateHandler)
         case backToHome
     }
     
     // MARK: - Internal
-    var routingActionSubject: PassthroughSubject<RoutingAction, Never> = PassthroughSubject()
+    let routingActionSubject: PassthroughSubject<RoutingAction, Never> = PassthroughSubject()
     private var cancellable: Set<AnyCancellable> = []
     
     // MARK: - View model listeners

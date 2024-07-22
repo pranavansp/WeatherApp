@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import SwiftUI
 
-class AppLifecycleCoordinator: ObservableObject {
+class AppLifecycleCoordinator {
     
     // MARK: - Private
     private var cancellable: Set<AnyCancellable> = []

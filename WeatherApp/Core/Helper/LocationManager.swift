@@ -9,26 +9,27 @@ import CoreLocation
 import Combine
 
 protocol LocationManagerProtocol: ObservableObject {
-    var location: PassthroughSubject<CLLocation?, Never> { get }
-    var error: PassthroughSubject<LocationManagerError?, Never> { get }
+    var locationPublisher: AnyPublisher<CLLocation, LocationManagerError> { get }
     func requestLocation()
 }
 
 class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDelegate {
     
     // MARK: - Private
-    private var locationManager: CLLocationManager
+    private let locationManager: CLLocationManager
     private var authorizationStatus: CLAuthorizationStatus = .notDetermined
+    private let location: PassthroughSubject<CLLocation, LocationManagerError> = PassthroughSubject()
 
     // MARK: - Internal
-    var location: PassthroughSubject<CLLocation?, Never> = PassthroughSubject()
-    var error: PassthroughSubject<LocationManagerError?, Never> = PassthroughSubject()
+    var locationPublisher: AnyPublisher<CLLocation, LocationManagerError> {
+        return location.eraseToAnyPublisher()
+    }
     
     override init() {
         self.locationManager = CLLocationManager()
         super.init()
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locationManager.requestWhenInUseAuthorization()
     }
     
@@ -57,7 +58,8 @@ class LocationManager: NSObject, LocationManagerProtocol, CLLocationManagerDeleg
         if (locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted) {
             let error = LocationManagerError.accessDenied
             NSLog("Location error: %@", error.localizedDescription)
-            self.error.send(error)
+            self.location.send(completion: .failure(.accessDenied))
         }
     }
 }
+
