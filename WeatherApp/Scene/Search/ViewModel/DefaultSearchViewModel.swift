@@ -19,13 +19,13 @@ final class DefaultSearchViewModel: SearchViewModel {
     @Published var searchKeyword: String = ""
     @Published var resultArray: [Geocoding] = []
     
-    @MainActor @Published var isLoading: Bool = true
+    @Published var isLoading: Bool = true
     @Published var error: NetworkError? = nil
     @Published var showErrorAlert: Bool = false
     
     // MARK: - Private
     private let dataSource: SearchDataSourceProtocol
-    private var geocodingUpdateHandler: GeocodingUpdateHandler
+    private let geocodingUpdateHandler: GeocodingUpdateHandler
     private var cancellable: Set<AnyCancellable> = []
     
     // MARK: - Init
@@ -42,9 +42,9 @@ final class DefaultSearchViewModel: SearchViewModel {
     private func bind() {
         $searchKeyword
             .removeDuplicates()
-            .throttle(for: .seconds(0.8), scheduler: DispatchQueue.main, latest: true)
+            .debounce(for: .seconds(1.2), scheduler: DispatchQueue.global(qos: .background))
             .sink { [weak self] keyword in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.startFetch(for: keyword)
             }
             .store(in: &cancellable)
@@ -61,7 +61,7 @@ final class DefaultSearchViewModel: SearchViewModel {
     // Using a separate method for starting the fetch helps avoid memory leaks.
     private func startFetch(for keyword: String) {
         Task { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             await self.fetchLocation(by: keyword)
         }
     }
@@ -69,31 +69,28 @@ final class DefaultSearchViewModel: SearchViewModel {
     // MARK: - fetch locations
     private func fetchLocation(by keyword: String) async {
         /// Clear result array if keyword is empty
-        guard !keyword.isEmpty else {
+        guard keyword.count > 2 else {
             await MainActor.run {
                 self.resultArray.removeAll()
             }
             return
         }
         /// Start network fetch
-        Task { [weak self] in
-            guard let self = self else { return }
+        await MainActor.run {
+            self.isLoading = true
+        }
+        do {
+            let dataSourceFetch =  try await dataSource.getLocation(by: keyword)
             await MainActor.run {
-                self.isLoading = true
+                self.resultArray = dataSourceFetch
+                self.isLoading = false
             }
-            do {
-                let dataSourceFetch =  try await dataSource.getLocation(by: keyword)
-                await MainActor.run {
-                    self.resultArray = dataSourceFetch
-                    self.isLoading = false
-                }
-            } catch {
-                NSLog("Error: %@", error.localizedDescription)
-                await MainActor.run {
-                    self.isLoading = false
-                    self.error = .network(error: error)
-                    self.showErrorAlert = true
-                }
+        } catch {
+            NSLog("Error: %@", error.localizedDescription)
+            await MainActor.run {
+                self.isLoading = false
+                self.error = .network(error: error)
+                self.showErrorAlert = true
             }
         }
     }
